@@ -1,4 +1,4 @@
-theme: jekyll-theme-cayman
+theme: jekyll-theme-minimal
 title: SkillCore Documentation
 description: Official documentation for SkillCore Educational Management Platform
 show_downloads: false
@@ -51,5 +51,5 @@ exclude:
 include:
   - _config.yml
   - README.md
-  - INDEX.md
+  - index.md
   - AI_DOCUMENTATION_INDEX.md
