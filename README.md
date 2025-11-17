@@ -104,6 +104,6 @@ MIT License - see [LICENSE](LICENSE) file for details
 ---
 
 **Auto-synced from**: [skillcore-spa/docs-new](https://github.com/poluru155/skillcore-spa/tree/main/docs-new)  
-**Last Updated**: Auto-updated on every commit  
+**Last Updated**: Auto-updated on every commit to main branch  
 **Powered by**: GitHub Actions + GitHub Pages
 
