@@ -1,3 +1,8 @@
+---
+layout: default
+title: SkillCore Documentation
+---
+
 # SkillCore Documentation Index
 
 **Version**: 2.0  
