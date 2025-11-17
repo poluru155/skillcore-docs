@@ -16,7 +16,7 @@ Visit our complete documentation at: **[https://poluru155.github.io/skillcore-do
 ## 🚀 Quick Navigation
 
 ### Getting Started
-- [**Main Index**](INDEX.md) - Complete documentation navigation
+- [**Main Index**](index.md) - Complete documentation navigation
 - [**AI Documentation Index**](AI_DOCUMENTATION_INDEX.md) - AI integration guide
 - [**Getting Started Guide**](guides/getting-started.md) - Setup and installation
 

@@ -95,7 +95,7 @@
 3. ✅ `reference/services-catalog.md` (2,000 lines)
 
 ### Index (3 files)
-1. ✅ `INDEX.md` (updated with all new docs)
+1. ✅ `index.md` (updated with all new docs)
 2. ✅ `AI_DOCUMENTATION_INDEX.md` (AI integration index) **NEW**
 3. ✅ `COMPLETION_SUMMARY.md` (this file)
 
@@ -336,4 +336,4 @@ The documentation is ready to support:
 ---
 
 **Documentation Team**: SkillCore Development  
-**Questions?** Start with [INDEX.md](./INDEX.md) or [AI_DOCUMENTATION_INDEX.md](./AI_DOCUMENTATION_INDEX.md)
+**Questions?** Start with [index.md](./index.md) or [AI_DOCUMENTATION_INDEX.md](./AI_DOCUMENTATION_INDEX.md)
