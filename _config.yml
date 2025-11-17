@@ -1,0 +1,55 @@
+theme: jekyll-theme-cayman
+title: SkillCore Documentation
+description: Official documentation for SkillCore Educational Management Platform
+show_downloads: false
+
+# GitHub Pages settings
+baseurl: "/skillcore-docs"
+url: "https://poluru155.github.io"
+
+# Enable plugins
+plugins:
+  - jekyll-relative-links
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-titles-from-headings
+
+# Plugin settings
+relative_links:
+  enabled: true
+  collections: false
+
+optional_front_matter:
+  remove_originals: false
+
+readme_index:
+  enabled: true
+  remove_originals: false
+
+titles_from_headings:
+  enabled: true
+  strip_title: true
+  collections: false
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+# Exclude files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .github
+
+# Include files
+include:
+  - _config.yml
+  - README.md
+  - INDEX.md
+  - AI_DOCUMENTATION_INDEX.md
