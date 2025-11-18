@@ -197,7 +197,27 @@
 ## 🐛 Known Issues
 
 ### Technical Debt
-1. **Chart Test Setup Path** ⚠️
+1. **Hierarchical Settings System** 🔴 **CRITICAL**
+   - Issue: No hierarchical settings infrastructure
+   - Required Levels: System → District → Board → School → User
+   - Override Pattern: Bottom takes precedence over top
+   - Use Cases:
+     - AI provider selection (district can override system default)
+     - Content moderation thresholds (school can override district)
+     - Notification preferences (user can override school)
+     - Feature toggles (system → district → school)
+     - Privacy settings (user can be more restrictive than school)
+   - Impact: All AI configuration currently hardcoded or env-based only
+   - Implementation Needed:
+     - Database schema: `SystemSettings`, `DistrictSettings`, `BoardSettings`, `SchoolSettings`, `UserSettings`
+     - Service layer: `HierarchicalSettingsService` with cascade resolution
+     - GraphQL API: Settings queries/mutations with proper RBAC
+     - Admin UI: Settings management interface
+     - Migration strategy: Move existing settings to hierarchical structure
+   - Fix Time: 15-20 hours
+   - Dependencies: Blocks AI provider customization per district/school
+   
+2. **Chart Test Setup Path** ⚠️
    - Issue: `test/chart-test-setup.ts` moved to `scripts/test/`
    - Impact: Vitest config needs update
    - Fix Time: 15 minutes
