@@ -49,7 +49,8 @@ SkillCore's WebSocket implementation provides real-time collaboration features a
 - ✅ Base infrastructure (WebSocketProvider, useWebSocket hook)
 - ✅ Transport layers (4 namespaces: Gradebook, Messaging, Attendance, Notifications)
 - ✅ React hooks (useWSGradebook, useWSMessaging, useWSAttendance, useWSNotifications)
-- ✅ UI components (TypingIndicator, PresenceBadge, NotificationToast)
+- ✅ Shared realtime UI components (TypingIndicator, PresenceIndicator suite)
+- ✅ Toast notifications with sonner integration
 
 ### Namespace Architecture Patterns
 
@@ -287,7 +288,6 @@ All client-side event types have been migrated to the `WSCEvent` suffix as of Ja
 - Server: `/api/src/contexts/notifications/infrastructure/websocket/notifications.namespace.ts`
 - Client: `/src/lib/websocket/transports/notifications-transport.ts`
 - Hook: `/src/hooks/websocket/useWSNotifications.tsx`
-- Component: `/src/components/websocket/NotificationToast.tsx`
 
 **Server** ✅ Complete:
 - [x] User-specific notification delivery (`sendToUser`)
@@ -306,10 +306,9 @@ All client-side event types have been migrated to the `WSCEvent` suffix as of Ja
   - `NotificationReceivedWSCEvent`
   - `NotificationReadWSCEvent`
   - `NotificationDismissedWSCEvent`
-- [x] NotificationToast component with priority-based styling (urgent, high, normal, low)
-- [x] NotificationToastContainer with auto-dismiss (5s for non-urgent)
+- [x] Toast notifications with sonner integration (priority-based styling)
 - [x] Priority filtering (urgent, grade posted, attendance alert, message received, etc.)
-- [x] Sound notifications for high/urgent priority
+- [x] Sound notifications for high/urgent priority (future enhancement)
 - [ ] Notification center UI (pending)
 
 **Architecture**: Stateless namespace - no Redis state needed. Broadcasts notification events to rooms, all data fetched from PostgreSQL.
@@ -1142,6 +1141,70 @@ await this.state.deleteList(`class:${classId}:handraise`)
 ---
 
 ## Client-Side Development
+
+### Component Architecture
+
+SkillCore WebSocket features use a **layered component architecture** that separates presentation from data integration:
+
+**Architecture Pattern**:
+1. **Shared Realtime Components** (`/src/components/realtime/`): Pure presentation components with props-based API
+2. **Feature Wrappers** (`/src/features/*/components/`): Thin wrappers that integrate data (stores, hooks) and delegate rendering
+3. **Benefits**: DRY principle, reusability across features, single source of truth for UI, easier maintenance
+
+**Example: Typing Indicator**
+
+```typescript
+// Shared component: /src/components/realtime/typing-indicator.tsx
+export interface TypingUser {
+  userId: string
+  userName: string
+}
+
+export function TypingIndicator({ users, maxDisplay = 3 }: { users: TypingUser[], maxDisplay?: number }) {
+  // Pure presentation logic - no data fetching
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-sm text-muted-foreground">{formatTypingText(users, maxDisplay)}</span>
+      <TypingDots />
+    </div>
+  )
+}
+
+// Feature wrapper: /src/features/chat/components/typing-indicator.tsx
+export function ChatTypingIndicator({ conversationId }: Props) {
+  const { otherTypingUsers } = useTypingIndicator(conversationId)
+  
+  // Fetch user names and map to TypingUser format
+  const typingUsers: TypingUser[] = otherTypingUsers.map(userId => ({
+    userId,
+    userName: getUserName(userId), // From store/API
+  }))
+  
+  // Delegate rendering to shared component
+  return <TypingIndicator users={typingUsers} />
+}
+```
+
+**Available Shared Realtime Components**:
+
+- `TypingIndicator` - Generic typing indicator with smart text formatting
+- `PresenceIndicator` - Full presence display with status and last seen
+- `PresenceDot` - Compact presence dot for avatars
+- `PresenceBadge` - Badge variant with label
+- `PresenceAvatar` - Avatar wrapper with presence overlay
+- `PresenceStatus` - Text-based status display
+
+**Toast Notifications**: Use `sonner` for all toast notifications instead of custom implementations.
+
+```typescript
+import { toast } from 'sonner'
+
+// Show notification toast
+toast.error('Grade Posted', {
+  description: 'New grade available for Math Quiz',
+  duration: 5000,
+})
+```
 
 ### Creating WebSocket Hooks
 
