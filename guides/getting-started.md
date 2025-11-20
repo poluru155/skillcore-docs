@@ -68,9 +68,9 @@ Create `.env.local` with these variables:
 VITE_API_MODE=external_mock
 
 # API URLs
-VITE_API_URL=http://localhost:4000
-VITE_GRAPHQL_URL=http://localhost:4000/graphql
-VITE_WS_URL=ws://localhost:4000/graphql
+VITE_API_URL=http://localhost:8081
+VITE_GRAPHQL_URL=http://localhost:8080/graphql
+VITE_WS_URL=ws://localhost:8080/graphql
 
 # Feature Flags
 VITE_USE_GRAPHQL_SUBSCRIPTIONS=false

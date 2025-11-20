@@ -197,9 +197,9 @@ vercel --prod
   "outputDirectory": ".next",
   "regions": ["iad1"],
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://api.skillcore.app",
-    "NEXT_PUBLIC_GRAPHQL_URL": "https://api.skillcore.app/graphql",
-    "NEXT_PUBLIC_WS_URL": "wss://api.skillcore.app"
+    "VITE_API_URL": "https://api.skillcore.app",
+    "VITE_GRAPHQL_URL": "https://api.skillcore.app/graphql",
+    "VITE_GRAPHQL_WS_URL": "wss://api.skillcore.app"
   }
 }
 ```
@@ -210,15 +210,15 @@ vercel --prod
 
 ```bash
 # API URLs
-NEXT_PUBLIC_API_URL=https://api.skillcore.app
-NEXT_PUBLIC_GRAPHQL_URL=https://api.skillcore.app/graphql
-NEXT_PUBLIC_WS_URL=wss://api.skillcore.app
+VITE_API_URL=https://api.skillcore.app
+VITE_GRAPHQL_URL=https://api.skillcore.app/graphql
+VITE_WS_URL=wss://api.skillcore.app
 
 # Firebase (Push Notifications)
-NEXT_PUBLIC_FIREBASE_API_KEY=AIza...
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=skillcore-prod
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123...
-NEXT_PUBLIC_FIREBASE_APP_ID=1:123...
+VITE_FIREBASE_API_KEY=AIza...
+VITE_FIREBASE_PROJECT_ID=skillcore-prod
+VITE_FIREBASE_MESSAGING_SENDER_ID=123...
+VITE_FIREBASE_APP_ID=1:123...
 ```
 
 ### 4. Deploy

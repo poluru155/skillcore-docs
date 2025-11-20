@@ -1276,7 +1276,7 @@ export class YourNamespaceTransport {
 // src/features/your-feature/hooks/use-your-namespace.ts
 import { useEffect, useRef } from 'react'
 import { YourNamespaceTransport } from '../websocket/your-namespace-transport'
-import { useAuth } from '@/hooks/use-auth'
+import { useAuth } from '@/providers/auth-provider'
 
 export function useYourNamespace(roomId: string | null) {
   const { accessToken } = useAuth()
